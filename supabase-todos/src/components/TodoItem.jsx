@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import '../index.css'
 
 export const TodoItem = ({ todo, onUpdate, onDelete }) => {
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditing, setIsEditing] = useState(false)
 
-    const [editText, setEditText] = useState(todo.text);
+    const [editText, setEditText] = useState(todo.text)
 
     const handleSave = () => {
         if (editText.trim() && editText !== todo.text) {
 
-            const updatedFields = { text: editText.trim() };
-            onUpdate(todo.id, updatedFields);
+            const updatedFields = { text: editText.trim() }
+            onUpdate(todo.id, updatedFields)
         }
 
-        setIsEditing(false);
-    };
+        setIsEditing(false)
+    }
 
     const handleToggleDone = () => {
-        const updatedFields = { done: !todo.done };
-        onUpdate(todo.id, updatedFields);
-    };
+        const updatedFields = { done: !todo.done }
+        onUpdate(todo.id, updatedFields)
+    }
 
     return (
         <li>
@@ -36,7 +37,7 @@ export const TodoItem = ({ todo, onUpdate, onDelete }) => {
                     onBlur={handleSave}
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
-                            handleSave();
+                            handleSave()
                         }
                     }}
                 />
@@ -48,12 +49,12 @@ export const TodoItem = ({ todo, onUpdate, onDelete }) => {
 
             {isEditing ? (
 
-                <button onClick={handleSave}>Save</button>
+                <button className='button-primary' onClick={handleSave}>Save</button>
             ) : (
-                <button onClick={() => setIsEditing(true)}>Edit</button>
+                <button className='button-primary' onClick={() => setIsEditing(true)}>Edit</button>
             )}
 
-            <button onClick={() => onDelete(todo.id)}>Delete</button>
+            < button className='button-primary' onClick={() => onDelete(todo.id)}>Delete</button>
         </li>
-    );
-};
+    )
+}
